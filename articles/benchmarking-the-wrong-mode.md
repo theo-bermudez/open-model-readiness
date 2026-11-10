@@ -81,7 +81,7 @@ The correction is more useful than a bigger benchmark table. Before a long evalu
 
 The first release includes a small original matched fixture with counterbalanced mode order and explicitly recorded warmup/cache treatment. It helps test the measurement path and basic behavior. It does not establish representative answer quality or sustained reliability. Repeated tiny prompts are not a substitute for diverse tasks and independent human labels.
 
-That distinction matters to the product decision. I can recommend an instrumented local demonstration with documented workarounds. I cannot recommend production deployment from this evidence. Calibrated quality evaluation, NeMo Evaluator runs, hosted testing and same-hardware GPU comparisons remain planned, each with its own resource requirements.
+That distinction matters to the product decision. I can recommend an instrumented local demonstration with documented workarounds. I cannot recommend production deployment from this evidence. A separate NeMo Evaluator integration smoke now runs the project's original fixtures; standard benchmark evaluation, human-calibrated quality, hosted testing and same-hardware GPU comparisons still require further work.
 
 The [full report](https://theo-bermudez.github.io/open-model-readiness/report.html) explains the gates and exclusions. The [reproduction guide](https://theo-bermudez.github.io/open-model-readiness/reproduce.html) starts with checks that require no model or API keys. Public aggregates preserve run identifiers, settings and hashes; raw dataset conversations and private terminal exports are not redistributed.
 

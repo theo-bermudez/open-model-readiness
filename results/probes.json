@@ -1,0 +1,620 @@
+{
+  "cases": [
+    {
+      "category": "structured output",
+      "coverage": "Strict JSON parsing and typed field extraction for one simple record.",
+      "empty_answers": 0,
+      "id": "structured_json",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 28681.006791,
+          "median": 9853.122125,
+          "min": 8476.664917,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 22,
+          "median": 22,
+          "min": 22,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 54,
+          "median": 54,
+          "min": 54,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "json_exact",
+      "unique_answer_hashes": 1
+    },
+    {
+      "category": "tool selection format",
+      "coverage": "JSON tool-selection format only; no native tool schema, function-call protocol, or tool execution.",
+      "empty_answers": 0,
+      "id": "tool_selection_format",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 13894.171292,
+          "median": 6457.376584,
+          "min": 2726.348,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 18,
+          "median": 18,
+          "min": 18,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 75,
+          "median": 75,
+          "min": 75,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "json_exact",
+      "unique_answer_hashes": 1
+    },
+    {
+      "category": "arithmetic",
+      "coverage": "One exact arithmetic output.",
+      "empty_answers": 0,
+      "id": "arithmetic",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 6651.499541,
+          "median": 4971.1315,
+          "min": 1471.15675,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 3,
+          "median": 3,
+          "min": 3,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 32,
+          "median": 32,
+          "min": 32,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "exact",
+      "unique_answer_hashes": 1
+    },
+    {
+      "category": "short-context lookup",
+      "coverage": "One sentinel lookup in a 48-row original inventory, below the context limit; not a long-context test.",
+      "empty_answers": 0,
+      "id": "context_sentinel",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 12461.044709,
+          "median": 6139.446417,
+          "min": 4258.808375,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 3,
+          "median": 3,
+          "min": 3,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 512,
+          "median": 512,
+          "min": 512,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "exact",
+      "unique_answer_hashes": 1
+    },
+    {
+      "category": "supplied-document abstention",
+      "coverage": "One missing-fact case with an explicit abstention sentinel; not a general hallucination assessment.",
+      "empty_answers": 0,
+      "id": "document_abstention",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 22265.346541,
+          "median": 3255.474292,
+          "min": 2077.532875,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 7,
+          "median": 7,
+          "min": 7,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 71,
+          "median": 71,
+          "min": 71,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "exact",
+      "unique_answer_hashes": 1
+    },
+    {
+      "category": "instruction following",
+      "coverage": "One exact word-order, count, casing and formatting instruction.",
+      "empty_answers": 0,
+      "id": "instruction_following",
+      "length_finishes": 0,
+      "metrics": {
+        "latency_ms": {
+          "max": 16287.107208,
+          "median": 7220.134083,
+          "min": 2958.245459,
+          "n": 3
+        },
+        "server_completion_tokens": {
+          "max": 6,
+          "median": 6,
+          "min": 6,
+          "n": 3
+        },
+        "server_prompt_tokens": {
+          "max": 45,
+          "median": 45,
+          "min": 45,
+          "n": 3
+        }
+      },
+      "pass_population_variance": 0,
+      "pass_rate": 1.0,
+      "passes": 3,
+      "repeats": 3,
+      "request_errors": 0,
+      "scoring": "exact",
+      "unique_answer_hashes": 1
+    }
+  ],
+  "engine": {
+    "name": "ollama",
+    "version": "0.40.15"
+  },
+  "environment": {
+    "after": {
+      "loaded_models": [
+        {
+          "context_length": 4096,
+          "digest": "6cc467f054393a55e98a74098abde0c762ffb6d1d8cd64becf30458f38886197",
+          "name": "nemotron-3-nano:4b-q4_K_M",
+          "runner": "llamacpp",
+          "size_vram": 2773305260
+        }
+      ],
+      "ollama": {
+        "version": "0.40.15"
+      },
+      "os": "macOS-27.0.1-arm64-arm-64bit",
+      "power_source": "AC",
+      "python": "3.12.13",
+      "swap_reported_M": {
+        "free": 521.19,
+        "total": 10240.0,
+        "used": 9718.81
+      },
+      "thermal_observation": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+      "timestamp_utc": "2026-11-10T21:01:23.226670+00:00"
+    },
+    "before": {
+      "loaded_models": [],
+      "ollama": {
+        "version": "0.40.15"
+      },
+      "os": "macOS-27.0.1-arm64-arm-64bit",
+      "power_source": "AC",
+      "python": "3.12.13",
+      "swap_reported_M": {
+        "free": 1244.38,
+        "total": 8192.0,
+        "used": 6947.62
+      },
+      "thermal_observation": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+      "timestamp_utc": "2026-11-10T20:58:41.373164+00:00"
+    }
+  },
+  "evidence_cutoff_utc": "2026-11-10T21:01:38.885911+00:00",
+  "hardware_class": "laptop",
+  "hash_definitions": {
+    "answer_sha256": "SHA-256 of exact answer text encoded as UTF-8",
+    "prompt_sha256": "SHA-256 of the JSON messages array with sorted keys, compact separators and unescaped Unicode encoded as UTF-8"
+  },
+  "limitations": [
+    "Six project-authored fixtures, three repeats each; not a representative model-quality estimate.",
+    "Tool-selection probe checks a JSON selection format, not native tools/function calling or execution.",
+    "Context probe is a short inventory lookup below the configured context limit, not a long-context benchmark.",
+    "Supplied-document abstention is one controlled missing-fact case, not a general hallucination or safety test.",
+    "Fixed order, retained cache, no separately measured warmups; timing is descriptive and not an engine or mode comparison.",
+    "Population variance summarizes these three binary outcomes only; zero observed variance does not establish reliability beyond this fixture."
+  ],
+  "measured_requests": 18,
+  "model": "nemotron-3-nano:4b-q4_K_M",
+  "passes": 18,
+  "request_errors": 0,
+  "requests": [
+    {
+      "answer": "{\"ticket\": \"R-17\", \"priority\": 2, \"status\": \"open\"}",
+      "answer_chars": 51,
+      "answer_sha256": "ba59dce3ce16e01258971b1bf82c34dc62f9992d299f6a714938cdebfc606c33",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "structured_json",
+      "latency_ms": 28681.006791,
+      "passed": true,
+      "payload_sha256": "50c852e93e81248c417ee826939dc7c5983531d882e0644fff1336d0246bacbb",
+      "prompt_sha256": "2e622c49edde097c19fe51fbfaec6ea722629f623fcfc046b5e544a3d6d18070",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 22,
+      "server_prompt_tokens": 54
+    },
+    {
+      "answer": "{\n  \"tool\": \"weather\",\n  \"city\": \"Oslo\"\n}",
+      "answer_chars": 41,
+      "answer_sha256": "e47170e362cd341f31a34ec88a570ae0fee4e350de16dcf275962f07d93f07ef",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "tool_selection_format",
+      "latency_ms": 2726.348,
+      "passed": true,
+      "payload_sha256": "5b244947ad97ae807ff9a8dc67bbcecf29b78a3e9fc6bc503f3ffd4f8961f7b9",
+      "prompt_sha256": "34f591d543e7c2eab72a07e29d83f2bc02fb7fb4f79ca51360b5ad2b897a6efa",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 18,
+      "server_prompt_tokens": 75
+    },
+    {
+      "answer": "63",
+      "answer_chars": 2,
+      "answer_sha256": "da4ea2a5506f2693eae190d9360a1f31793c98a1adade51d93533a6f520ace1c",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "arithmetic",
+      "latency_ms": 1471.15675,
+      "passed": true,
+      "payload_sha256": "ced9af043bee07ec2c555dbd4e24e0a87a3e0260028eeb8aa3204a79f13c0dff",
+      "prompt_sha256": "2cc9961feffaf04041558bdb56b772e4c48b3bf60fccbfb6917aed46751cd67f",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 32
+    },
+    {
+      "answer": "LANTERN",
+      "answer_chars": 7,
+      "answer_sha256": "27cf72e0cf1af013e24c8a15822b2837e6c4e63b0fdf1f13eedf11ea991c344d",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "context_sentinel",
+      "latency_ms": 4258.808375,
+      "passed": true,
+      "payload_sha256": "d322f01cdbb9ee92e63ecc46f2201ed3d04bff001e2d259f56d8bc83d59826ba",
+      "prompt_sha256": "f3b138965d3787af72bb5ef07f76986f248e485e3e7ac8f75ab9336b88f83046",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 512
+    },
+    {
+      "answer": "NOT_IN_DOCUMENT",
+      "answer_chars": 15,
+      "answer_sha256": "fbc0309eef88804a3d922e044d8e63aed06f7757820cd52a23dce55fa849de23",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "document_abstention",
+      "latency_ms": 2077.532875,
+      "passed": true,
+      "payload_sha256": "f4f6d368ad5d08abb84856b1b14c019b300debd6bd09fbc4a512116fdf9552eb",
+      "prompt_sha256": "72f64a9a5888b99428e5e6d0f24b8208d95821fdff9fa742596d77c2098faf25",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 7,
+      "server_prompt_tokens": 71
+    },
+    {
+      "answer": "amber birch cedar",
+      "answer_chars": 17,
+      "answer_sha256": "f541b3f32881f63a26cb58e56dfe305be411a34340926eaa4ad1b58c7e6f1de6",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "instruction_following",
+      "latency_ms": 2958.245459,
+      "passed": true,
+      "payload_sha256": "6b0026b42e86dc82a5613e1c5c834def98a555fcff9c7e83d071e1e27e8fae20",
+      "prompt_sha256": "448e097dec338ca1cfbeeef4b8d12ad3e435a087d542bb0808d8e11327ed8bbd",
+      "reasoning_present": false,
+      "repeat": 0,
+      "request_succeeded": true,
+      "server_cached_tokens": 0,
+      "server_completion_tokens": 6,
+      "server_prompt_tokens": 45
+    },
+    {
+      "answer": "{\"ticket\": \"R-17\", \"priority\": 2, \"status\": \"open\"}",
+      "answer_chars": 51,
+      "answer_sha256": "ba59dce3ce16e01258971b1bf82c34dc62f9992d299f6a714938cdebfc606c33",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "structured_json",
+      "latency_ms": 9853.122125,
+      "passed": true,
+      "payload_sha256": "50c852e93e81248c417ee826939dc7c5983531d882e0644fff1336d0246bacbb",
+      "prompt_sha256": "2e622c49edde097c19fe51fbfaec6ea722629f623fcfc046b5e544a3d6d18070",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 50,
+      "server_completion_tokens": 22,
+      "server_prompt_tokens": 54
+    },
+    {
+      "answer": "{\n  \"tool\": \"weather\",\n  \"city\": \"Oslo\"\n}",
+      "answer_chars": 41,
+      "answer_sha256": "e47170e362cd341f31a34ec88a570ae0fee4e350de16dcf275962f07d93f07ef",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "tool_selection_format",
+      "latency_ms": 6457.376584,
+      "passed": true,
+      "payload_sha256": "5b244947ad97ae807ff9a8dc67bbcecf29b78a3e9fc6bc503f3ffd4f8961f7b9",
+      "prompt_sha256": "34f591d543e7c2eab72a07e29d83f2bc02fb7fb4f79ca51360b5ad2b897a6efa",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 71,
+      "server_completion_tokens": 18,
+      "server_prompt_tokens": 75
+    },
+    {
+      "answer": "63",
+      "answer_chars": 2,
+      "answer_sha256": "da4ea2a5506f2693eae190d9360a1f31793c98a1adade51d93533a6f520ace1c",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "arithmetic",
+      "latency_ms": 4971.1315,
+      "passed": true,
+      "payload_sha256": "ced9af043bee07ec2c555dbd4e24e0a87a3e0260028eeb8aa3204a79f13c0dff",
+      "prompt_sha256": "2cc9961feffaf04041558bdb56b772e4c48b3bf60fccbfb6917aed46751cd67f",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 28,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 32
+    },
+    {
+      "answer": "LANTERN",
+      "answer_chars": 7,
+      "answer_sha256": "27cf72e0cf1af013e24c8a15822b2837e6c4e63b0fdf1f13eedf11ea991c344d",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "context_sentinel",
+      "latency_ms": 6139.446417,
+      "passed": true,
+      "payload_sha256": "d322f01cdbb9ee92e63ecc46f2201ed3d04bff001e2d259f56d8bc83d59826ba",
+      "prompt_sha256": "f3b138965d3787af72bb5ef07f76986f248e485e3e7ac8f75ab9336b88f83046",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 508,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 512
+    },
+    {
+      "answer": "NOT_IN_DOCUMENT",
+      "answer_chars": 15,
+      "answer_sha256": "fbc0309eef88804a3d922e044d8e63aed06f7757820cd52a23dce55fa849de23",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "document_abstention",
+      "latency_ms": 3255.474292,
+      "passed": true,
+      "payload_sha256": "f4f6d368ad5d08abb84856b1b14c019b300debd6bd09fbc4a512116fdf9552eb",
+      "prompt_sha256": "72f64a9a5888b99428e5e6d0f24b8208d95821fdff9fa742596d77c2098faf25",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 67,
+      "server_completion_tokens": 7,
+      "server_prompt_tokens": 71
+    },
+    {
+      "answer": "amber birch cedar",
+      "answer_chars": 17,
+      "answer_sha256": "f541b3f32881f63a26cb58e56dfe305be411a34340926eaa4ad1b58c7e6f1de6",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "instruction_following",
+      "latency_ms": 7220.134083,
+      "passed": true,
+      "payload_sha256": "6b0026b42e86dc82a5613e1c5c834def98a555fcff9c7e83d071e1e27e8fae20",
+      "prompt_sha256": "448e097dec338ca1cfbeeef4b8d12ad3e435a087d542bb0808d8e11327ed8bbd",
+      "reasoning_present": false,
+      "repeat": 1,
+      "request_succeeded": true,
+      "server_cached_tokens": 41,
+      "server_completion_tokens": 6,
+      "server_prompt_tokens": 45
+    },
+    {
+      "answer": "{\"ticket\": \"R-17\", \"priority\": 2, \"status\": \"open\"}",
+      "answer_chars": 51,
+      "answer_sha256": "ba59dce3ce16e01258971b1bf82c34dc62f9992d299f6a714938cdebfc606c33",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "structured_json",
+      "latency_ms": 8476.664917,
+      "passed": true,
+      "payload_sha256": "50c852e93e81248c417ee826939dc7c5983531d882e0644fff1336d0246bacbb",
+      "prompt_sha256": "2e622c49edde097c19fe51fbfaec6ea722629f623fcfc046b5e544a3d6d18070",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 50,
+      "server_completion_tokens": 22,
+      "server_prompt_tokens": 54
+    },
+    {
+      "answer": "{\n  \"tool\": \"weather\",\n  \"city\": \"Oslo\"\n}",
+      "answer_chars": 41,
+      "answer_sha256": "e47170e362cd341f31a34ec88a570ae0fee4e350de16dcf275962f07d93f07ef",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "tool_selection_format",
+      "latency_ms": 13894.171292,
+      "passed": true,
+      "payload_sha256": "5b244947ad97ae807ff9a8dc67bbcecf29b78a3e9fc6bc503f3ffd4f8961f7b9",
+      "prompt_sha256": "34f591d543e7c2eab72a07e29d83f2bc02fb7fb4f79ca51360b5ad2b897a6efa",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 71,
+      "server_completion_tokens": 18,
+      "server_prompt_tokens": 75
+    },
+    {
+      "answer": "63",
+      "answer_chars": 2,
+      "answer_sha256": "da4ea2a5506f2693eae190d9360a1f31793c98a1adade51d93533a6f520ace1c",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "arithmetic",
+      "latency_ms": 6651.499541,
+      "passed": true,
+      "payload_sha256": "ced9af043bee07ec2c555dbd4e24e0a87a3e0260028eeb8aa3204a79f13c0dff",
+      "prompt_sha256": "2cc9961feffaf04041558bdb56b772e4c48b3bf60fccbfb6917aed46751cd67f",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 28,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 32
+    },
+    {
+      "answer": "LANTERN",
+      "answer_chars": 7,
+      "answer_sha256": "27cf72e0cf1af013e24c8a15822b2837e6c4e63b0fdf1f13eedf11ea991c344d",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "context_sentinel",
+      "latency_ms": 12461.044709,
+      "passed": true,
+      "payload_sha256": "d322f01cdbb9ee92e63ecc46f2201ed3d04bff001e2d259f56d8bc83d59826ba",
+      "prompt_sha256": "f3b138965d3787af72bb5ef07f76986f248e485e3e7ac8f75ab9336b88f83046",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 508,
+      "server_completion_tokens": 3,
+      "server_prompt_tokens": 512
+    },
+    {
+      "answer": "NOT_IN_DOCUMENT",
+      "answer_chars": 15,
+      "answer_sha256": "fbc0309eef88804a3d922e044d8e63aed06f7757820cd52a23dce55fa849de23",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "document_abstention",
+      "latency_ms": 22265.346541,
+      "passed": true,
+      "payload_sha256": "f4f6d368ad5d08abb84856b1b14c019b300debd6bd09fbc4a512116fdf9552eb",
+      "prompt_sha256": "72f64a9a5888b99428e5e6d0f24b8208d95821fdff9fa742596d77c2098faf25",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 67,
+      "server_completion_tokens": 7,
+      "server_prompt_tokens": 71
+    },
+    {
+      "answer": "amber birch cedar",
+      "answer_chars": 17,
+      "answer_sha256": "f541b3f32881f63a26cb58e56dfe305be411a34340926eaa4ad1b58c7e6f1de6",
+      "error_type": null,
+      "finish_reason": "stop",
+      "fixture_id": "instruction_following",
+      "latency_ms": 16287.107208,
+      "passed": true,
+      "payload_sha256": "6b0026b42e86dc82a5613e1c5c834def98a555fcff9c7e83d071e1e27e8fae20",
+      "prompt_sha256": "448e097dec338ca1cfbeeef4b8d12ad3e435a087d542bb0808d8e11327ed8bbd",
+      "reasoning_present": false,
+      "repeat": 2,
+      "request_succeeded": true,
+      "server_cached_tokens": 41,
+      "server_completion_tokens": 6,
+      "server_prompt_tokens": 45
+    }
+  ],
+  "run_id": "20261110T205841Z_nemotron-3-nano-4b_ollama_laptop_probes",
+  "schema_version": 1,
+  "served_by": "self",
+  "settings": {
+    "concurrency": 1,
+    "num_ctx": 4096,
+    "num_predict": 256,
+    "repeats": 3,
+    "retry_count": 0,
+    "seed": 42,
+    "stream": true,
+    "temperature": 0,
+    "think": false,
+    "top_p": 1
+  },
+  "source_sha256": {
+    "runs/20261110T205841Z_nemotron-3-nano-4b_ollama_laptop_probes/meta.json": "08defb725c46e264bc4a7724d641468edb5e2507c8183ae893637169b005dd57",
+    "runs/20261110T205841Z_nemotron-3-nano-4b_ollama_laptop_probes/requests.jsonl": "e1084bb0d1bad34f19cf1565fe208ce02fecadd8955d23417b48dbe014a115e9",
+    "runs/20261110T205841Z_nemotron-3-nano-4b_ollama_laptop_probes/suite.json": "5205a36959faf7a673570761402f8afddb8f863006335fa08388512da2d6b510"
+  },
+  "status": "complete_original_probe_suite",
+  "wall_time_s": 161.8434646250098
+}

@@ -47,7 +47,18 @@ Choose a new directory for each run; an existing output path is refused. The run
 
 Do not call a native-API microfixture a repeat of the ShareGPT/AIPerf benchmark. Compare within its own model, endpoint, hardware and conditions. Review truncated/empty responses before reporting latency medians.
 
-## 5. Reproduce the AIPerf integration issue
+## 5. Run the original reliability probes
+
+Read the [original prompts and expected answers](https://github.com/theo-bermudez/open-model-readiness/blob/main/probes.jsonl), [objective scorers](https://github.com/theo-bermudez/open-model-readiness/blob/main/harness/probes.py) and [release results](https://github.com/theo-bermudez/open-model-readiness/blob/main/results/probes.json). The suite covers JSON extraction, tool-selection format, arithmetic, short-context lookup, supplied-document abstention and instruction following. It uses the existing local model with thinking OFF, three repeats, sequential requests and no paid calls.
+
+```bash
+python3 -m harness.probes --output runs/new-local-check_ollama_laptop_probes
+python3 -m harness.probes --summarize runs/new-local-check_ollama_laptop_probes --summary runs/new-local-check_ollama_laptop_probes/summary.json
+```
+
+Choose a fresh run folder. Review every failed or capped response before updating the maintained release results. Transport failures are preserved and stop the run; they do not become passing or missing observations. These original cases are a small integration suite, not a standard benchmark or a calibrated quality score. Tool-selection formatting does not establish native tool calling, and the short sentinel does not establish long-context capability.
+
+## 6. Reproduce the AIPerf integration issue
 
 AIPerf 0.13.0 is the tested version; preserve the original environment when reproducing it. Use an isolated Python 3.12 environment if installing it elsewhere.
 
@@ -71,7 +82,7 @@ It listens on loopback port 11435 and forwards to Ollama on 11434. In a separate
 
 A fixed-input replay must freeze the complete message arrays, including prior assistant turns. Fixing just the dataset seed or conversation IDs does not fix generated conversation history. Cache state and run order must also be documented; an OFF-only replay against an old ON run does not control elapsed time or machine conditions.
 
-## 6. Build and publish documentation safely
+## 7. Build and publish documentation safely
 
 ```bash
 python3 scripts/build_public.py
@@ -82,4 +93,6 @@ Edit `content/` and `results/`, then regenerate. `docs/` is the static deploymen
 
 ## Further evaluation
 
-The next sequence is reliability probes, human calibration, a scoped NeMo evaluation, hosted testing, GPU comparisons and a second-model runbook test. Obtain explicit resource authorization before paid calls or large downloads. Human calibration labels must be supplied by the human reviewer; automated grades are not substitutes. GPU and hosted results belong in separate tables. See [ROADMAP.md](https://github.com/theo-bermudez/open-model-readiness/blob/main/ROADMAP.md).
+The [NeMo integration guide](https://github.com/theo-bermudez/open-model-readiness/blob/main/reports/nemo-feasibility.md) records the tested isolated setup, original fixture adapter and preserved failed attempt. It also documents a read-only first-cell GPU guard; no GPU benchmark has run.
+
+The next sequence is broader reliability probes, human calibration, a standard NeMo benchmark subset, hosted testing, GPU comparisons and a second-model runbook test. Obtain explicit resource authorization before paid calls or large downloads. Human calibration labels must be supplied by the human reviewer; automated grades are not substitutes. GPU and hosted results belong in separate tables. See [ROADMAP.md](https://github.com/theo-bermudez/open-model-readiness/blob/main/ROADMAP.md).

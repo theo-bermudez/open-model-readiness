@@ -20,7 +20,7 @@ For developers integrating open models and product teams deciding what is ready 
 | Profiled requests | 20 | 20 |
 | Length-limit stops | 3 | 0 |
 
-The historical latency columns are **descriptive and confounded**, not a controlled mode speedup. Every displayed result derives from [results/m4.json](results/m4.json), including per-request hashes, settings, run IDs and source digests. Raw dataset text is intentionally excluded from this public release.
+The historical latency columns are **descriptive and confounded**, not a controlled mode speedup. These values derive from [results/m4.json](results/m4.json), including per-request hashes, settings, run IDs and source digests. The [maintained results](results/) also contain the NeMo integration and original reliability suite evidence. Raw dataset text is intentionally excluded from this public release.
 
 ## Get started without a model
 
@@ -44,6 +44,8 @@ No credentials or hosted API calls are needed. The NumPy cross-check and YAML va
 | Nemotron 3.5 Super VL | NVIDIA-hosted · text only planned | Undisclosed | Planned: endpoint access and budget required |
 | Nemotron-3-Nano-4B | Ollama / vLLM / SGLang | Single T4 planned | Planned: GPU access required |
 | Dory 1.0 4B | Runtime to be selected | Not run | Planned: independent runbook validation |
+
+The local original reliability suite tested 6 cases with 3 repeats each: 18/18 objective checks passed. These are narrow fixture checks, not a representative reliability estimate. See [case outcomes and limits](https://theo-bermudez.github.io/open-model-readiness/report.html#original-reliability-probes).
 
 ## Readiness decision
 

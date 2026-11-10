@@ -1,0 +1,30 @@
+# Optional NeMo 0.3.0 integration smoke, four project-authored prompts.
+# Requires the existing loopback reasoning proxy; no API key is needed.
+services:
+  local_model:
+    type: api
+    url: http://127.0.0.1:11435/v1/chat/completions
+    protocol: chat_completions
+    model: nemotron-3-nano:4b-q4_K_M
+    api_key: null
+    generation:
+      temperature: 0
+      top_p: 1
+      seed: 42
+      max_tokens: 256
+benchmarks:
+  - name: harness/nemo_fixture.py
+    repeats: 1
+    max_problems: 4
+    max_concurrent: 1
+    max_system_retries: 1
+    shuffle_seed: null
+    timeout: 120
+    solver:
+      type: simple
+      service: local_model
+output:
+  dir: runs/nemo-local-fixture
+  timestamped: true
+  report: [markdown]
+  export: []

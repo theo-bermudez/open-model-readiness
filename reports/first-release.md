@@ -76,6 +76,33 @@ Measured wall time: 129.77 seconds, including setup and warmups; summed measured
 
 This microfixture is a semantic and reproducibility check. Its original prompts are deliberately small enough for local execution. It does not estimate representative task quality, long-context accuracy, sustained load, production reliability or performance on NVIDIA hardware. Counterbalancing reduces systematic mode-order bias; it does not remove all cache, thermal, background-load or deterministic-decoding effects. Repeats are not independent tasks.
 
+## NeMo Evaluator integration
+
+NeMo Evaluator 0.3.0 completed 4 of 4 original fixtures with passing normalized exact-match scores and no model errors in run `20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo`. This was one repeat per fixture through the existing OFF proxy, not a standard benchmark. Wall time was 27.78 seconds; its evaluation loop reported 24.23 seconds. A prior scorer-metadata collision failed and remains excluded. The isolated dependency overlay preserved the historical AIPerf environment. Reasoning-token fields were unavailable, and cache/warmup was not controlled for latency comparison.
+
+[NeMo method, setup and limitations](https://github.com/theo-bermudez/open-model-readiness/blob/main/reports/nemo-feasibility.md) · [NeMo results](https://github.com/theo-bermudez/open-model-readiness/blob/main/results/nemo.json)
+
+## Original reliability probes
+
+The local original reliability suite tested 6 cases with 3 repeats each: 18/18 objective checks passed. These are narrow fixture checks, not a representative reliability estimate.
+
+Run `20261110T205841Z_nemotron-3-nano-4b_ollama_laptop_probes` used the native Ollama API with thinking OFF, context 4096, output cap 256, temperature 0 and seed 42. Requests ran sequentially; 0 request errors and 0 retries were recorded. Total wall time was 161.84 seconds.
+
+| Original case | Passed / repeats | Observed pass variance | Empty answers | Length stops |
+| --- | --- | --- | --- | --- |
+| structured output | 3/3 | 0.00 | 0 | 0 |
+| tool selection format | 3/3 | 0.00 | 0 | 0 |
+| arithmetic | 3/3 | 0.00 | 0 | 0 |
+| short-context lookup | 3/3 | 0.00 | 0 | 0 |
+| supplied-document abstention | 3/3 | 0.00 | 0 | 0 |
+| instruction following | 3/3 | 0.00 | 0 | 0 |
+
+[Original prompts and expected answers](https://github.com/theo-bermudez/open-model-readiness/blob/main/probes.jsonl) · [Scoring implementation](https://github.com/theo-bermudez/open-model-readiness/blob/main/harness/probes.py) · [Probe results and provenance](../results/probes.json)
+
+The JSON scorer rejects duplicate keys, nonstandard numeric values, extra fields and wrong value types. Exact-text cases trim outer whitespace without changing case or punctuation. The tool-selection case checks JSON format only; no native function-call protocol or tool execution was tested. The context sentinel is a short inventory lookup, not a long-context test. The supplied-document case checks one explicit missing-fact instruction, not general hallucination or safety behavior.
+
+Observed variance describes only the repeated binary outcomes on each fixture. The cases ran in fixed order with retained cache and no separately measured warmups, so timing is descriptive. Repeating deterministic prompts on one laptop does not establish population reliability, calibrated quality or production readiness.
+
 ## Context, caching and timing caveats
 
 Historical client input lengths exceeded the configured context on some requests, while server usage counts were lower. Tokenizer/template differences and cache accounting also affect those counts. A count difference alone is not proof of exactly which text was truncated. Full per-request truncation attribution requires server trace evidence or a controlled sentinel test. Do not present the advertised model context as the context actually configured by the runtime.
@@ -104,4 +131,4 @@ Theo ran the original setup and benchmarks with Claude Code assistance. Codex co
 
 ## Remaining work
 
-The next validation step is representative, repeated reliability probes followed by human-label calibration. NeMo Evaluator, hosted testing, same-hardware GPU engine comparisons and independent Dory runbook validation remain separate planned work. See the [roadmap](https://github.com/theo-bermudez/open-model-readiness/blob/main/ROADMAP.md) for dependencies and the [launch brief](https://github.com/theo-bermudez/open-model-readiness/blob/main/briefs/local-readiness.md) for the release decision.
+The next validation step is broader, representative probe coverage followed by human-label calibration. The original reliability suite and NeMo Evaluator integration smoke are tested; standard NeMo benchmarks, hosted testing, same-hardware GPU engine comparisons and independent Dory runbook validation remain separate planned work. See the [roadmap](https://github.com/theo-bermudez/open-model-readiness/blob/main/ROADMAP.md) for dependencies and the [launch brief](https://github.com/theo-bermudez/open-model-readiness/blob/main/briefs/local-readiness.md) for the release decision.

@@ -1,0 +1,219 @@
+{
+  "counts": {
+    "finish_reasons": {
+      "stop": 4
+    },
+    "http_statuses": {
+      "200": 4
+    },
+    "model_errors": 0,
+    "passed_normalized_exact_match": 4,
+    "passed_strict_strip_match": 4,
+    "profiled_requests": 4,
+    "retries": 0
+  },
+  "discovery": {
+    "builtin_names": [
+      "drop",
+      "gpqa",
+      "gsm8k",
+      "healthbench",
+      "humaneval",
+      "math500",
+      "mgsm",
+      "mmlu",
+      "mmlu_pro",
+      "nmp_harbor",
+      "pinchbench",
+      "simpleqa",
+      "terminal-bench-hard",
+      "terminal-bench-hard-aa-split",
+      "terminal-bench-v1",
+      "triviaqa",
+      "xstest"
+    ],
+    "command": "python -m nemo_evaluator.cli.main list --source builtin",
+    "status": "succeeded"
+  },
+  "engine": {
+    "name": "ollama",
+    "version": "0.40.15"
+  },
+  "evaluator_elapsed_s": 24.23,
+  "evidence_cutoff_utc": "2026-11-10T20:55:10.803104+00:00",
+  "failed_attempts": [
+    {
+      "correction": "Rename original fixture target column expected to answer in NeMo adapter; prompts and reference answers unchanged.",
+      "reason": "ByobEnvironment.verify() received expected both positionally and in metadata.",
+      "run_id": "20261110T205027Z_nemotron-3-nano-4b_ollama_laptop_nemo",
+      "scope": "Observed on0.3.0. No upstream issue filed; no shared package modified.",
+      "status": "failed_excluded",
+      "wall_time_s": 32.416805499990005
+    }
+  ],
+  "hardware_class": "laptop",
+  "hash_definitions": {
+    "prompt_sha256": "SHA-256 of the JSON messages array with sorted keys, compact separators and unescaped Unicode encoded as UTF-8",
+    "response_sha256": "SHA-256 of exact response text encoded as UTF-8"
+  },
+  "installed_overlay": {
+    "apparent_installed_bytes": 23864134,
+    "note": "Isolated overlay reuses compatible dependencies from original venv; dateutil2.9.0.post0 is scoped to overlay because botocore requires<3. Original dateutil4.0.0 remains untouched.",
+    "original_environment_unchanged": {
+      "aiperf": "0.13.0",
+      "nemo-evaluator": "not installed in original .venv",
+      "python-dateutil": "4.0.0"
+    },
+    "packages": [
+      {
+        "name": "nemo-evaluator",
+        "version": "0.3.0",
+        "wheel_bytes": 522703,
+        "wheel_sha256": "60fdb8613e78348aa0b0b82144756279b3ea63835a826d37c5e7a8b2ae579c41",
+        "wheel_url": "https://files.pythonhosted.org/packages/62/66/aec5d840820ce95541cc3473abfab46a6395561d193bcc05bec0dbe61fd7/nemo_evaluator-0.3.0-py3-none-any.whl"
+      },
+      {
+        "name": "boto3",
+        "version": "1.43.0",
+        "wheel_bytes": 140497,
+        "wheel_sha256": "8ebe03754a4b73a5cb6ec2f14cca03ac33bd4760d0adea53da4724845130258b",
+        "wheel_url": "https://files.pythonhosted.org/packages/b3/a0/3e6a0b1c1ea6bec76f71473727ef27abf3cd40e9709b3ebcbfbcfaae6f79/boto3-1.43.0-py3-none-any.whl"
+      },
+      {
+        "name": "botocore",
+        "version": "1.43.0",
+        "wheel_bytes": 14970102,
+        "wheel_sha256": "cc5b15eaec3c6eac05d8012cb5ef17ebe891beb88a16ca13c374bfaece1241e6",
+        "wheel_url": "https://files.pythonhosted.org/packages/bf/4b/afc1fef8a43bafb139f57f73bbd70df82807af5934321e8112ae50668827/botocore-1.43.0-py3-none-any.whl"
+      },
+      {
+        "name": "s3transfer",
+        "version": "0.17.0",
+        "wheel_bytes": 86811,
+        "wheel_sha256": "ce3801712acf4ad3e89fb9990df97b4972e93f4b3b0004d214be5bce12814c20",
+        "wheel_url": "https://files.pythonhosted.org/packages/87/72/c6c32d2b657fa3dad1de340254e14390b1e334ce38268b7ad51abda3c8c2/s3transfer-0.17.0-py3-none-any.whl"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0",
+        "wheel_bytes": 229892,
+        "wheel_sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+        "wheel_url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl"
+      }
+    ],
+    "path": ".scratch/nemo",
+    "python": "3.12.13",
+    "wheel_download_bytes": 15950005
+  },
+  "limitations": [
+    "No confidence or generalization claim from four simple fixtures.",
+    "Scoring integration succeeded after one diagnostic correction; failed attempt retained.",
+    "NeMo reasoning-token fields are unavailable/null and must not be described as measured zero.",
+    "No raw dataset or private conversation text is included."
+  ],
+  "model": {
+    "id": "nemotron-3-nano:4b-q4_K_M",
+    "quantization": "Q4_K_M"
+  },
+  "not_run": [
+    "standard benchmarks such as GSM8K or MMLU",
+    "human-calibrated judge",
+    "GPU engines",
+    "hosted model",
+    "repeatability of NeMo result beyond this single four-item smoke"
+  ],
+  "requests": [
+    {
+      "completion_tokens": 3,
+      "finish_reason": "stop",
+      "fixture_id": "echo",
+      "latency_ms": 12722.44,
+      "problem_idx": 0,
+      "prompt_sha256": "bbe2359dce447cd4c536cf9dada0ac1d3aab8e25c650717ebe1c3893870829aa",
+      "prompt_tokens": 27,
+      "reasoning_tokens": null,
+      "repeat": 0,
+      "response_sha256": "c2e3ac47f4a325469c1a2d5f117e463ec943c721986d5d9f09ac4540b7d80526",
+      "reward": 1.0,
+      "strict_strip_match": true
+    },
+    {
+      "completion_tokens": 3,
+      "finish_reason": "stop",
+      "fixture_id": "arithmetic",
+      "latency_ms": 7577.34,
+      "problem_idx": 1,
+      "prompt_sha256": "490d198a49533e932e56faee8611ab290d11ecca65ec1590deb7da6590849e65",
+      "prompt_tokens": 30,
+      "reasoning_tokens": null,
+      "repeat": 0,
+      "response_sha256": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918",
+      "reward": 1.0,
+      "strict_strip_match": true
+    },
+    {
+      "completion_tokens": 4,
+      "finish_reason": "stop",
+      "fixture_id": "extract",
+      "latency_ms": 1526.31,
+      "problem_idx": 2,
+      "prompt_sha256": "ae4dc05d45ddb73768dcfa9981acec482347e2c936cffe6a17af63bb9a450276",
+      "prompt_tokens": 31,
+      "reasoning_tokens": null,
+      "repeat": 0,
+      "response_sha256": "72294ba1616ddcaee48e56501040e876d26bd0c1839f3cddd34900f590f717a4",
+      "reward": 1.0,
+      "strict_strip_match": true
+    },
+    {
+      "completion_tokens": 2,
+      "finish_reason": "stop",
+      "fixture_id": "classify",
+      "latency_ms": 1022.0,
+      "problem_idx": 3,
+      "prompt_sha256": "9cb4531c6228cdc6a6fc18f46c0fb3be36ba1488a66d2296144427cc73082cfd",
+      "prompt_tokens": 34,
+      "reasoning_tokens": null,
+      "repeat": 0,
+      "response_sha256": "ec38063c881f0a5edfef6a5233925fe7e555746ebdc0865af3eb13c4e1805f46",
+      "reward": 1.0,
+      "strict_strip_match": true
+    }
+  ],
+  "run_id": "20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo",
+  "schema_version": 1,
+  "scope": "NeMo Evaluator integration smoke on four project-authored prompts; not a standard benchmark, quality estimate, or performance comparison.",
+  "scorer": {
+    "behavior": "NFKD normalization, lowercase, removal of articles a/an/the and punctuation, whitespace normalization; not strict byte equality. All four outputs also passed independent strip-only equality.",
+    "name": "nemo_evaluator.scoring.exact_match",
+    "source_url": "https://github.com/NVIDIA-NeMo/Evaluator/blob/v0.3.0/src/nemo_evaluator/scoring/text.py"
+  },
+  "served_by": "self",
+  "settings": {
+    "concurrency": 1,
+    "context": "Ollama default4096; no override by this NeMo config",
+    "max_problems": 4,
+    "max_tokens": 256,
+    "mode": "OFF configured via existing local proxy",
+    "repeats": 1,
+    "route": "NeMo temporary loopback adapter -> existing reasoning-off proxy -> Ollama OpenAI-compatible endpoint",
+    "seed": 42,
+    "temperature": 0,
+    "top_p": 1,
+    "warmup": "none explicitly added; prior failed attempt warmed model. Latency is not a controlled benchmark."
+  },
+  "source_sha256": {
+    "configs/nemo-local-fixture.yaml": "2972da6b7b29711e9e5eee3214f406f8787b1b22e3442c00ec9cf6ca0f6da645",
+    "evidence/m7/nel-list.txt": "720bd52ee5431683b19ef45e1c18a9d6baf8eb79ead7072e202cd116c9c910ce",
+    "harness/nemo_fixture.py": "f58147436402c67e857abb81d6b08c0e4e740caa0dd8fe4f9b6f08b55e5c83b0",
+    "runs/20261110T205027Z_nemotron-3-nano-4b_ollama_laptop_nemo/command.log": "b538c17d5896ae5a898faa0228ce791ec4ddc55fe6e73225f7731c1e9bcdcea1",
+    "runs/20261110T205027Z_nemotron-3-nano-4b_ollama_laptop_nemo/meta.json": "45d6068d3392592b6165ef608ae79650931186419786d51a5ca6db1265792d39",
+    "runs/20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo/evaluation/omr_original_fixture/model_traffic.jsonl": "ff6df708adde4669789879ba0b0cd6cb84ed2b6c7882b58db16b91147bc7470d",
+    "runs/20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo/evaluation/omr_original_fixture/results.jsonl": "11bb0d156ddb514ba014d4cc60255a90608414e31e65ffac528ae338f2222762",
+    "runs/20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo/evaluation/omr_original_fixture/runtime_stats.json": "b6019dfa85f6a36022ff44f3ce4086fc525f381a4085428d04b321a662531541",
+    "runs/20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo/evaluation/omr_original_fixture/trajectories.jsonl": "5d5f79b2771560c2c5554c90e9bc2165a2ceb7090bbd7b2a32335c4fabc28fbd",
+    "runs/20261110T205209Z_nemotron-3-nano-4b_ollama_laptop_nemo/meta.json": "999e7eaacb5728bccb2672e6f724c28c8a81e4edc0b6b45f9cca2dde80747ac9"
+  },
+  "status": "tested_original_fixture_only",
+  "wall_time_s": 27.775254874984967
+}

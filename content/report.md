@@ -56,6 +56,18 @@ All timing values above are medians across profiling requests; three warmups per
 
 This microfixture is a semantic and reproducibility check. Its original prompts are deliberately small enough for local execution. It does not estimate representative task quality, long-context accuracy, sustained load, production reliability or performance on NVIDIA hardware. Counterbalancing reduces systematic mode-order bias; it does not remove all cache, thermal, background-load or deterministic-decoding effects. Repeats are not independent tasks.
 
+## NeMo Evaluator integration
+
+{{NEMO_SUMMARY}}
+
+## Original reliability probes
+
+{{PROBES_SUMMARY}}
+
+The JSON scorer rejects duplicate keys, nonstandard numeric values, extra fields and wrong value types. Exact-text cases trim outer whitespace without changing case or punctuation. The tool-selection case checks JSON format only; no native function-call protocol or tool execution was tested. The context sentinel is a short inventory lookup, not a long-context test. The supplied-document case checks one explicit missing-fact instruction, not general hallucination or safety behavior.
+
+Observed variance describes only the repeated binary outcomes on each fixture. The cases ran in fixed order with retained cache and no separately measured warmups, so timing is descriptive. Repeating deterministic prompts on one laptop does not establish population reliability, calibrated quality or production readiness.
+
 ## Context, caching and timing caveats
 
 Historical client input lengths exceeded the configured context on some requests, while server usage counts were lower. Tokenizer/template differences and cache accounting also affect those counts. A count difference alone is not proof of exactly which text was truncated. Full per-request truncation attribution requires server trace evidence or a controlled sentinel test. Do not present the advertised model context as the context actually configured by the runtime.
@@ -84,4 +96,4 @@ Theo ran the original setup and benchmarks with Claude Code assistance. Codex co
 
 ## Remaining work
 
-The next validation step is representative, repeated reliability probes followed by human-label calibration. NeMo Evaluator, hosted testing, same-hardware GPU engine comparisons and independent Dory runbook validation remain separate planned work. See the [roadmap]({{REPO}}/blob/main/ROADMAP.md) for dependencies and the [launch brief]({{REPO}}/blob/main/briefs/local-readiness.md) for the release decision.
+The next validation step is broader, representative probe coverage followed by human-label calibration. The original reliability suite and NeMo Evaluator integration smoke are tested; standard NeMo benchmarks, hosted testing, same-hardware GPU engine comparisons and independent Dory runbook validation remain separate planned work. See the [roadmap]({{REPO}}/blob/main/ROADMAP.md) for dependencies and the [launch brief]({{REPO}}/blob/main/briefs/local-readiness.md) for the release decision.

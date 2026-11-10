@@ -12,7 +12,7 @@ For developers integrating open models and product teams deciding what is ready 
 
 {{HEADLINE_TABLE}}
 
-The historical latency columns are **descriptive and confounded**, not a controlled mode speedup. Every displayed result derives from [results/m4.json](results/m4.json), including per-request hashes, settings, run IDs and source digests. Raw dataset text is intentionally excluded from this public release.
+The historical latency columns are **descriptive and confounded**, not a controlled mode speedup. These values derive from [results/m4.json](results/m4.json), including per-request hashes, settings, run IDs and source digests. The [maintained results](results/) also contain the NeMo integration and original reliability suite evidence. Raw dataset text is intentionally excluded from this public release.
 
 ## Get started without a model
 
@@ -31,6 +31,8 @@ No credentials or hosted API calls are needed. The NumPy cross-check and YAML va
 ## Tested coverage
 
 {{COVERAGE_TABLE}}
+
+{{PROBES_SCOPE}} See [case outcomes and limits]({{SITE}}report.html#original-reliability-probes).
 
 ## Readiness decision
 

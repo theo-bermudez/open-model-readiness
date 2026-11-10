@@ -36,6 +36,7 @@ runs/*/aiperf/inputs.json
 *.safetensors
 
 # Public releases use PUBLICATION_FILES.txt; new raw experiments stay local.
+/runs/
 /publication/
 /docs/.build-cache/
 runs/*_matched*/

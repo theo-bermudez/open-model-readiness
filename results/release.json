@@ -4,13 +4,33 @@
   "repository": "https://github.com/theo-bermudez/open-model-readiness",
   "site": "https://theo-bermudez.github.io/open-model-readiness/",
   "article_url": null,
-  "article_status": "Prepared locally; Substack authentication required",
+  "article_status": "Case study available on project site; Substack publication pending",
   "author": "Theo Bermudez",
   "research_origin": "5cb93bb",
   "coverage": [
-    ["Nemotron-3-Nano-4B", "Ollama 0.40.15 / Q4_K_M", "Apple M2 · 8 GB", "Tested: request semantics and small local workloads"],
-    ["Nemotron 3.5 Super VL", "NVIDIA-hosted · text only planned", "Undisclosed", "Planned: endpoint access and budget required"],
-    ["Nemotron-3-Nano-4B", "Ollama / vLLM / SGLang", "Single T4 planned", "Planned: GPU access required"],
-    ["Dory 1.0 4B", "Runtime to be selected", "Not run", "Planned: independent runbook validation"]
+    [
+      "Nemotron-3-Nano-4B",
+      "Ollama 0.40.15 / Q4_K_M",
+      "Apple M2 \u00b7 8 GB",
+      "Tested: request semantics and small local workloads"
+    ],
+    [
+      "Nemotron 3.5 Super VL",
+      "NVIDIA-hosted \u00b7 text only planned",
+      "Undisclosed",
+      "Planned: endpoint access and budget required"
+    ],
+    [
+      "Nemotron-3-Nano-4B",
+      "Ollama / vLLM / SGLang",
+      "Single T4 planned",
+      "Planned: GPU access required"
+    ],
+    [
+      "Dory 1.0 4B",
+      "Runtime to be selected",
+      "Not run",
+      "Planned: independent runbook validation"
+    ]
   ]
 }

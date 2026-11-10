@@ -67,7 +67,7 @@ def table(headers,rows):
     return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join(['---']*len(headers))+' |',*['| '+' | '.join(map(str,r))+' |' for r in rows]])
 
 
-def context(release,data):
+def context(release,data,nemo,probes):
     runs={r['run_id']:r for r in data['historical_runs']}; comp=data['historical_comparison']
     on=runs[comp['on_run']];off=runs[comp['off_run']]
     invalid=next(r for r in runs.values() if r['status']=='invalid_as_off')
@@ -84,7 +84,12 @@ def context(release,data):
         x=replay['by_mode'][mode]
         replay_rows.append([mode.upper(),x['requests'],x['exact_answer_passes'],x['reasoning_present'],x['empty_answers'],x['truncated']])
     replay_summary=(f"Run `{replay['run_id']}`: {replay['profiled_requests']} measured requests, {replay['warmup_requests']} separate same-mode warmups and {replay['complete_matched_pairs']} matched pairs. Four original prompts, three repetitions per mode; native streaming API for both modes. Context {replay['settings']['num_ctx']}, output cap {replay['settings']['num_predict']}, temperature {replay['settings']['temperature']} and seed {replay['settings']['seed']}.\n\n"+table(['Mode','Measured requests','Exact answers passed','Reasoning present','Empty answers','Length stops'],replay_rows)+f"\n\nMeasured wall time: {replay['wall_time_s']:.2f} seconds, including setup and warmups; summed measured-request latency: {replay['timed_requests_total_s']:.2f} seconds. The laptop was on AC power and showed substantial swap usage. Cache was retained: each timed request followed an identical same-mode warmup. This establishes behavior on these short fixtures, not a representative speedup or quality score.")
-    return {'REPO':release['repository'],'SITE':release['site'],'CUTOFF':release['evidence_cutoff'],'RELEASE':release['release'],'ARTICLE_LINK':(' · [Substack article]('+release['article_url']+')') if release['article_url'] else '', 'HEADLINE_TABLE':head,'COVERAGE_TABLE':table(['Model','Runtime / precision','Hardware','Coverage'],release['coverage']),'MATCHED_COUNT':str(comp['matching_full_payloads']),'PROFILE_COUNT':str(on['profiled_requests']),'INVALID_EMPTY':str(invalid['empty_answers']),'INVALID_N':str(invalid['profiled_requests']),'REPLAY_SUMMARY':replay_summary}
+    nemo_summary=(f"NeMo Evaluator 0.3.0 completed {nemo['counts']['passed_normalized_exact_match']} of {nemo['counts']['profiled_requests']} original fixtures with passing normalized exact-match scores and no model errors in run `{nemo['run_id']}`. This was one repeat per fixture through the existing OFF proxy, not a standard benchmark. Wall time was {nemo['wall_time_s']:.2f} seconds; its evaluation loop reported {nemo['evaluator_elapsed_s']:.2f} seconds. A prior scorer-metadata collision failed and remains excluded. The isolated dependency overlay preserved the historical AIPerf environment. Reasoning-token fields were unavailable, and cache/warmup was not controlled for latency comparison.\n\n"+f"[NeMo method, setup and limitations]({release['repository']}/blob/main/reports/nemo-feasibility.md) · [NeMo results]({release['repository']}/blob/main/results/nemo.json)")
+    if probes['status']!='complete_original_probe_suite': raise ValueError('original probes must be complete for release')
+    probe_scope=(f"The local original reliability suite tested {len(probes['cases'])} cases with {probes['settings']['repeats']} repeats each: {probes['passes']}/{probes['measured_requests']} objective checks passed. These are narrow fixture checks, not a representative reliability estimate.")
+    probe_rows=[[x['category'],f"{x['passes']}/{x['repeats']}",f"{x['pass_population_variance']:.2f}",x['empty_answers'],x['length_finishes']] for x in probes['cases']]
+    probe_summary=(f"{probe_scope}\n\nRun `{probes['run_id']}` used the native Ollama API with thinking OFF, context {probes['settings']['num_ctx']}, output cap {probes['settings']['num_predict']}, temperature {probes['settings']['temperature']} and seed {probes['settings']['seed']}. Requests ran sequentially; {probes['request_errors']} request errors and {probes['settings']['retry_count']} retries were recorded. Total wall time was {probes['wall_time_s']:.2f} seconds.\n\n"+table(['Original case','Passed / repeats','Observed pass variance','Empty answers','Length stops'],probe_rows)+f"\n\n[Original prompts and expected answers]({release['repository']}/blob/main/probes.jsonl) · [Scoring implementation]({release['repository']}/blob/main/harness/probes.py) · [Probe results and provenance](results/probes.json)")
+    return {'REPO':release['repository'],'SITE':release['site'],'CUTOFF':release['evidence_cutoff'],'RELEASE':release['release'],'ARTICLE_LINK':(' · [Substack article]('+release['article_url']+')') if release['article_url'] else '', 'HEADLINE_TABLE':head,'COVERAGE_TABLE':table(['Model','Runtime / precision','Hardware','Coverage'],release['coverage']),'MATCHED_COUNT':str(comp['matching_full_payloads']),'PROFILE_COUNT':str(on['profiled_requests']),'INVALID_EMPTY':str(invalid['empty_answers']),'INVALID_N':str(invalid['profiled_requests']),'REPLAY_SUMMARY':replay_summary,'NEMO_SUMMARY':nemo_summary,'PROBES_SUMMARY':probe_summary,'PROBES_SCOPE':probe_scope}
 
 
 def fill(template,c):
@@ -113,21 +118,21 @@ def home(c,r,d):
 <article class="finding"><div class="number">03</div><div><p class="tag">ANSWER USABILITY · OUTPUT BUDGET MATTERS</p><h3>HTTP success can still leave an empty answer.</h3><p>In the invalid OFF run, {c['INVALID_EMPTY']} of {c['INVALID_N']} profiled responses had no final answer. Every response hit its length limit.</p><p><strong>Gate:</strong> distinguish transport success, reasoning output and usable answers.</p><a href="report.html#finding-3-successful-transport-unusable-answer">Inspect the failure →</a></div></article></section>
 <section class="flow-section"><p class="eyebrow">WHERE THE MEANING CHANGED</p><h2>Follow the value through the request.</h2><div class="flow" role="img" aria-label="Intended reasoning_effort string none becomes null in AIPerf parsing; Ollama returns reasoning. A local proxy restores the string before forwarding."><div><small>INTENT</small><code>"none"</code><span>Thinking off requested</span></div><b aria-hidden="true">→</b><div class="fault"><small>CLIENT PARSER</small><code>null</code><span>Value changes type</span></div><b aria-hidden="true">→</b><div><small>OBSERVED RESPONSE</small><code>reasoning</code><span>Mode still on</span></div></div><p class="caption">Conceptual request path for the tested versions. The proxy corrects the value after client parsing.</p></section>
 <section><p class="eyebrow">EVIDENCE, WITH BOUNDARIES</p><h2>A small matched check of actual behavior.</h2>{markdown(c['REPLAY_SUMMARY'])}<p><a href="report.html#controlled-local-replay">Method and limitations →</a></p></section>
-<section><p class="eyebrow">COVERAGE</p><h2>What has actually been tested.</h2>{markdown(c['COVERAGE_TABLE'])}<p>The <a href="{r['repository']}/blob/main/ROADMAP.md">roadmap</a> separates executed work from resource-dependent experiments.</p></section>
+<section><p class="eyebrow">COVERAGE</p><h2>What has actually been tested.</h2>{markdown(c['COVERAGE_TABLE'])}{markdown(c['PROBES_SCOPE'])}<p><a href="report.html#original-reliability-probes">Probe methods and outcomes →</a></p><p>The <a href="{r['repository']}/blob/main/ROADMAP.md">roadmap</a> separates executed work from resource-dependent experiments.</p></section>
 <section class="closing"><div><p class="eyebrow">GO DEEPER</p><h2>Useful evidence.<br>Reproducible decisions.</h2><p>Read the investigation, inspect the code, or start with tests that need no model or API key.</p></div><div class="reading"><a href="{article}">Read the case study <span>↗</span></a><a href="report.html">Full technical report <span>→</span></a><a href="reproduce.html">Reproducibility guide <span>→</span></a><a href="{r['repository']}">Source on GitHub <span>↗</span></a></div></section>'''
 
 
 def outputs():
-    r=json.loads((ROOT/'results/release.json').read_text());d=json.loads((ROOT/'results/m4.json').read_text());c=context(r,d)
+    r=json.loads((ROOT/'results/release.json').read_text());d=json.loads((ROOT/'results/m4.json').read_text());n=json.loads((ROOT/'results/nemo.json').read_text());p=json.loads((ROOT/'results/probes.json').read_text());c=context(r,d,n,p)
     texts={name:fill((ROOT/f'content/{name}.md').read_text(),c) for name in ['README','report','reproduce','article']}
-    out={'README.md':texts['README'],'RUNBOOK.md':texts['reproduce'],'reports/first-release.md':texts['report'].replace('(results/m4.json)','(../results/m4.json)'),'articles/benchmarking-the-wrong-mode.md':texts['article']}
+    out={'README.md':texts['README'],'RUNBOOK.md':texts['reproduce'],'reports/first-release.md':texts['report'].replace('(results/','(../results/'),'articles/benchmarking-the-wrong-mode.md':texts['article']}
     for name,title in [('report','Full report'),('reproduce','Reproduce'),('article','Benchmarking the wrong mode')]:
         out[f'docs/{name}.html']=shell(title,markdown(texts[name]),r)
     out['docs/index.html']=shell('Check the contract before the chart',home(c,r,d),r,True)
     out['articles/benchmarking-the-wrong-mode.html']=markdown(texts['article'])
     out['docs/.nojekyll']=''
     for path in sorted((ROOT/'site/assets').glob('*')):out['docs/assets/'+path.name]=path.read_text()
-    for name in ['m4.json','release.json']:out['docs/results/'+name]=(ROOT/'results'/name).read_text()
+    for name in ['m4.json','nemo.json','probes.json','release.json']:out['docs/results/'+name]=(ROOT/'results'/name).read_text()
     return out
 
 
