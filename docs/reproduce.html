@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reproduce · Open Model Readiness</title><meta name="description" content="Request semantics, benchmark validity and practical readiness gates for a local open-model workflow.">
+<meta property="og:title" content="Reproduce · Open Model Readiness"><meta property="og:description" content="Request semantics, benchmark validity and practical readiness gates for a local open-model workflow."><meta property="og:type" content="website"><meta property="og:image" content="https://theo-bermudez.github.io/open-model-readiness/assets/social.svg">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="./">OMR<span>Open Model Readiness</span></a><nav aria-label="Main navigation"><a href="./#findings">Findings</a><a href="report.html">Full report</a><a href="reproduce.html">Reproduce</a><a href="https://github.com/theo-bermudez/open-model-readiness">Code ↗</a></nav></header>
+<main id="main" class="document"><h1 id="reproduce-the-checks">Reproduce the checks</h1>
+<p><a href="https://theo-bermudez.github.io/open-model-readiness/">Overview</a> · <a href="https://theo-bermudez.github.io/open-model-readiness/report.html">Full report</a> · <a href="https://github.com/theo-bermudez/open-model-readiness">Code</a></p>
+<h2 id="1-verify-the-published-artifact-without-inference">1. Verify the published artifact without inference</h2>
+<p>Use Python 3.12, the tested interpreter. No API keys are required.</p>
+<pre><code>git clone https://github.com/theo-bermudez/open-model-readiness.git
+cd open-model-readiness
+git config core.hooksPath scripts/githooks
+python3 -m unittest discover -s tests -t .
+python3 scripts/build_public.py --check
+python3 scripts/check_site.py</code></pre>
+<p>The core tests are standard-library-only. Optional YAML/NumPy checks skip when their dependencies are absent. <code>scripts/test.sh</code> uses the project venv when available, otherwise <code>python3</code>. A clean scan is necessary but does not establish dataset redistribution rights.</p>
+<h2 id="2-inspect-evidence-before-comparing-results">2. Inspect evidence before comparing results</h2>
+<p>Open <code>results/m4.json</code>. It preserves run IDs, request counts, warmup exclusion, generation settings, prompt hashes, finish reasons and file digests. Historical runs with mismatched full requests remain descriptive. Failed or invalid-as-OFF runs are marked and excluded; a missing artifact is never a zero.</p>
+<p>The public release does not include raw ShareGPT text or original terminal exports. If you have the original research artifacts locally, run the audit command documented by <code>python3 -m harness.audit_runs --help</code>. Do not add raw prompts, answers or <code>inputs.json</code> to a public commit. AIPerf may export an entire dataset into <code>inputs.json</code>.</p>
+<h2 id="3-smoke-test-an-existing-local-ollama-model">3. Smoke-test an existing local Ollama model</h2>
+<p>The tested model tag is <code>nemotron-3-nano:4b-q4_K_M</code>, served by Ollama 0.40.15. The published result does not apply automatically to another tag or version. Installing Ollama or pulling weights is a separate resource decision; the following command assumes they already exist.</p>
+<pre><code>curl --fail http://127.0.0.1:11434/api/chat \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;model&quot;:&quot;nemotron-3-nano:4b-q4_K_M&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Reply with exactly one word: pong&quot;}],&quot;think&quot;:false,&quot;stream&quot;:false,&quot;options&quot;:{&quot;temperature&quot;:0,&quot;num_ctx&quot;:4096,&quot;num_predict&quot;:64}}&#x27;</code></pre>
+<p>Check the answer, thinking field, stop reason and token counts. HTTP 200 alone is insufficient. Avoid parallel benchmarks and record machine load, power state and server version.</p>
+<h2 id="4-re-run-the-matched-original-fixture">4. Re-run the matched original fixture</h2>
+<p>Read <code>python3 -m harness.matched_replay --help</code> before execution. Create a unique output folder:</p>
+<pre><code>python3 -m harness.matched_replay --output runs/new-local-check_ollama_laptop_matched</code></pre>
+<p>Choose a new directory for each run; an existing output path is refused. The runner uses only the local endpoint, preserves request order and original prompts, records warmups separately, and saves a fresh run directory. It does not download a model or call a paid provider. The saved design in <code>results/m4.json</code> states the exact options, cap, repetitions and cache treatment used in this release.</p>
+<p>Do not call a native-API microfixture a repeat of the ShareGPT/AIPerf benchmark. Compare within its own model, endpoint, hardware and conditions. Review truncated/empty responses before reporting latency medians.</p>
+<h2 id="5-reproduce-the-aiperf-integration-issue">5. Reproduce the AIPerf integration issue</h2>
+<p>AIPerf 0.13.0 is the tested version; preserve the original environment when reproducing it. Use an isolated Python 3.12 environment if installing it elsewhere.</p>
+<pre><code>from aiperf.config.flags.cli_config import CLIConfig
+
+config = CLIConfig(model=[&quot;nemotron-3-nano:4b-q4_K_M&quot;],
+                   extra_inputs=&#x27;{&quot;reasoning_effort&quot;:&quot;none&quot;}&#x27;)
+print(config.extra_inputs)
+print(CLIConfig.model_validate(config.model_dump()).extra_inputs)
+# First parse retains the string; revalidation changes it to None.</code></pre>
+<p>Inspect both JSON and key:value input paths; do not assume quoting preserves a string. The local workaround is:</p>
+<pre><code>python3 -m harness.reasoning_proxy</code></pre>
+<p>It listens on loopback port 11435 and forwards to Ollama on 11434. In a separate terminal, point AIPerf at <code>http://127.0.0.1:11435</code>. Label results <strong>OFF via proxy</strong>. Use <code>--use-legacy-max-tokens</code>, an explicit output cap, streaming, raw export, a verified tokenizer and documented warmups. Check emitted payloads and response reasoning before starting a long run. No proxy is needed for the native matched fixture.</p>
+<p>A fixed-input replay must freeze the complete message arrays, including prior assistant turns. Fixing just the dataset seed or conversation IDs does not fix generated conversation history. Cache state and run order must also be documented; an OFF-only replay against an old ON run does not control elapsed time or machine conditions.</p>
+<h2 id="6-build-and-publish-documentation-safely">6. Build and publish documentation safely</h2>
+<pre><code>python3 scripts/build_public.py
+python3 scripts/check_site.py</code></pre>
+<p>Edit <code>content/</code> and <code>results/</code>, then regenerate. <code>docs/</code> is the static deployment root, with relative paths that work under <code>/open-model-readiness/</code>. It contains no inference service and needs no keys. <code>PUBLICATION_FILES.txt</code> is the explicit reviewed publication list. The original research repository is never pushed wholesale.</p>
+<h2 id="further-evaluation">Further evaluation</h2>
+<p>The next sequence is reliability probes, human calibration, a scoped NeMo evaluation, hosted testing, GPU comparisons and a second-model runbook test. Obtain explicit resource authorization before paid calls or large downloads. Human calibration labels must be supplied by the human reviewer; automated grades are not substitutes. GPU and hosted results belong in separate tables. See <a href="https://github.com/theo-bermudez/open-model-readiness/blob/main/ROADMAP.md">ROADMAP.md</a>.</p></main><footer><p>Independent work by Theo Bermudez. No NVIDIA affiliation or endorsement.</p><p>Evidence cutoff 2026-11-10 · <a href="https://github.com/theo-bermudez/open-model-readiness/tree/v0.1.0">v0.1.0</a> · <a href="results/m4.json">Results & provenance</a></p></footer></body></html>

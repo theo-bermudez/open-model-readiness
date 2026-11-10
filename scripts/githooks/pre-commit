@@ -1,0 +1,5 @@
+#!/bin/sh
+# Runs before every `git commit` and blocks it if the staged content contains an API key.
+# Enabled per clone with:  git config core.hooksPath scripts/githooks
+# (git does not copy hooks on clone, which is why the path is configured, not the hook installed.)
+exec python3 "$(dirname "$0")/../secret_scan.py" --staged

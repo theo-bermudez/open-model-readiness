@@ -1,0 +1,42 @@
+# NOTE: gitignore has no trailing comments. A "#" after a pattern becomes part of
+# the pattern, so every comment here sits on its own line.
+
+# --- secrets: never commit ---------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- environments and scratch -------------------------------------------------
+.venv/
+__pycache__/
+*.pyc
+# throwaway files made by tests and experiments
+.scratch/
+.DS_Store
+
+# --- tool output that can hold request payloads or headers ---------------------
+# NeMo Evaluator's caching interceptor stores requests in SQLite. Review a file
+# before un-ignoring it, and run scripts/secret_scan.py --tree first.
+*.sqlite
+*.sqlite3
+*.db
+# AIPerf writes to ./artifacts by default; we point it at runs/<run>/ instead.
+/artifacts/
+
+# --- Hugging Face downloads kept inside the project folder (set HF_HOME to this) ---
+.hf_cache/
+
+# --- AIPerf dataset cache: --public-dataset sharegpt downloads 672.8 MB into ./.cache/aiperf ---
+.cache/
+# With a public dataset AIPerf writes the WHOLE dataset to inputs.json (about 170 MB per run). The raw export holds the requests actually sent.
+runs/*/aiperf/inputs.json
+
+# --- model weights never belong in git ------------------------------------------
+*.gguf
+*.safetensors
+
+# Public releases use PUBLICATION_FILES.txt; new raw experiments stay local.
+/publication/
+/docs/.build-cache/
+runs/*_matched*/
+runs/*_replay*/

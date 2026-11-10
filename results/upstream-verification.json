@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-11-10",
+  "verification_kind": "primary-source inspection, not a current-main runtime benchmark",
+  "source_hash_scope": "SHA-256 of exact HTTP response body bytes, including retained 404 response",
+  "raw_source_bodies_published": false,
+  "upstream_submissions_sent": false,
+  "sources": [
+    {
+      "id": "aiperf-parsing-pinned",
+      "url": "https://raw.githubusercontent.com/ai-dynamo/aiperf/4710831f100b5933372e14ed4b6b5fb955a64a73/src/aiperf/config/loader/parsing.py",
+      "captured_utc": "2026-11-10T20:33:08.866615+00:00",
+      "http_status": 200,
+      "sha256": "f0343b70d24ab661645587c7426b60f4ca6c82d9f946fcd5b749ca2a8851ee13",
+      "bytes": 21863
+    },
+    {
+      "id": "aiperf-parsing-v013",
+      "url": "https://raw.githubusercontent.com/ai-dynamo/aiperf/v0.13.0/src/aiperf/config/loader/parsing.py",
+      "captured_utc": "2026-11-10T20:33:08.878303+00:00",
+      "http_status": 200,
+      "sha256": "bde2988f27f517e93c066a60ea14af4e04220958106dd55d15b166626ae7d99a",
+      "bytes": 17889
+    },
+    {
+      "id": "ollama-openai-pinned",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/3f3fa58f7fcf18de43ec126ad8676b4281b6923c/openai/openai.go",
+      "captured_utc": "2026-11-10T20:33:08.878808+00:00",
+      "http_status": 200,
+      "sha256": "09156ca7867181c1997862eccaa6d353e1703ded39c764ba6a045d0a80f58de7",
+      "bytes": 29720
+    },
+    {
+      "id": "ollama-openai-v04015",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/v0.40.15/openai/openai.go",
+      "captured_utc": "2026-11-10T20:33:08.878966+00:00",
+      "http_status": 200,
+      "sha256": "0eae8233714ac0e793687e5bde631630968c9f829765bfdbea4a5bf6b51a3cd4",
+      "bytes": 29562
+    },
+    {
+      "id": "vllm-registry-v033",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.33.0/vllm/model_executor/models/registry.py",
+      "captured_utc": "2026-11-10T20:33:09.754523+00:00",
+      "http_status": 200,
+      "sha256": "b0b2221e740dd40f7e9f7532b92cf764458fd188b77ff16859a4dc529e78154c",
+      "bytes": 67558
+    },
+    {
+      "id": "vllm-release-v033",
+      "url": "https://api.github.com/repos/vllm-project/vllm/releases/tags/v0.33.0",
+      "captured_utc": "2026-11-10T20:33:09.759537+00:00",
+      "http_status": 404,
+      "sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+      "bytes": 133
+    },
+    {
+      "id": "dory-card-live",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16/raw/main/README.md",
+      "captured_utc": "2026-11-10T20:33:09.765470+00:00",
+      "http_status": 200,
+      "sha256": "3db3d81d4b89a9616f6a775181679497c1363a3b62b97c3cfdc73178378a3ce4",
+      "bytes": 29440
+    },
+    {
+      "id": "dory-discussions-live",
+      "url": "https://huggingface.co/api/models/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16/discussions",
+      "captured_utc": "2026-11-10T20:33:09.781098+00:00",
+      "http_status": 200,
+      "sha256": "76868683f1ea31888374e45dc45ffe4e19dc7b382532538893caca12b73fc5ac",
+      "bytes": 10602
+    },
+    {
+      "id": "aiperf-issue-1562",
+      "url": "https://api.github.com/repos/ai-dynamo/aiperf/issues/1562",
+      "captured_utc": "2026-11-10T20:33:10.046204+00:00",
+      "http_status": 200,
+      "sha256": "1804a2e0dd00bd5707924196eb93f6465d1a0e2fd651cb0bae2fb0b027f4c3d8",
+      "bytes": 4471
+    },
+    {
+      "id": "vllm-pr-60149",
+      "url": "https://api.github.com/repos/vllm-project/vllm/pulls/60149",
+      "captured_utc": "2026-11-10T20:33:10.117846+00:00",
+      "http_status": 200,
+      "sha256": "b89f83441c857732014290f82dab177de936860f4a8c099ad7d112d0e3ea02d1",
+      "bytes": 25399
+    },
+    {
+      "id": "ollama-issue-7125",
+      "url": "https://api.github.com/repos/ollama/ollama/issues/7125",
+      "captured_utc": "2026-11-10T20:34:28.522294+00:00",
+      "http_status": 200,
+      "sha256": "8de389cee75a4764867842b5268e6c9a951d8404e8c5c816033a7e4c57539c98",
+      "bytes": 3407
+    },
+    {
+      "id": "vllm-pypi-v033",
+      "url": "https://pypi.org/pypi/vllm/0.33.0/json",
+      "captured_utc": "2026-11-10T20:34:28.523680+00:00",
+      "http_status": 200,
+      "sha256": "b18ce04ad83fa1d8c515a6c8b848fd5fee9e25d48f742f9a178a6a5bf213aa9e",
+      "bytes": 13387
+    },
+    {
+      "id": "ollama-openai-docs",
+      "url": "https://docs.ollama.com/api/openai-compatibility",
+      "captured_utc": "2026-11-10T20:34:28.523839+00:00",
+      "http_status": 200,
+      "sha256": "8db04237077314437934c2e1e0c305f9ab15142fb45d07318562eaf15cfd93c7",
+      "bytes": 356793
+    },
+    {
+      "id": "ollama-context-docs",
+      "url": "https://docs.ollama.com/context-length",
+      "captured_utc": "2026-11-10T20:34:28.523998+00:00",
+      "http_status": 200,
+      "sha256": "1b083820be46bc8e53656195da4b8b1b57ee6c9bc64f5e72a0c281cf1eb0394a",
+      "bytes": 133467
+    },
+    {
+      "id": "vllm-tag-v033",
+      "url": "https://api.github.com/repos/vllm-project/vllm/git/ref/tags/v0.33.0",
+      "captured_utc": "2026-11-10T20:34:28.799269+00:00",
+      "http_status": 200,
+      "sha256": "79604e8ddfb8e20057073091c9177c546a24839410f5ad95df3734682d20818f",
+      "bytes": 333
+    },
+    {
+      "id": "dory-discussion-15",
+      "url": "https://huggingface.co/api/models/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16/discussions/15",
+      "captured_utc": "2026-11-10T20:34:28.903002+00:00",
+      "http_status": 200,
+      "sha256": "0b54cd4683bd869b855bd27d92a4633b381c6d63bf7da9520ea0de000691b70d",
+      "bytes": 5283
+    }
+  ],
+  "findings": [
+    {
+      "id": "aiperf-string-none-conversion",
+      "status": "present_in_tested_version_and_inspected_main_source",
+      "tested_version": "0.13.0",
+      "inspected_main_commit": "4710831f100b5933372e14ed4b6b5fb955a64a73",
+      "summary": "The parser maps top-level string none/null to Python None; sequence and dict revalidation call this coercion. Recorded project requests demonstrate the altered reasoning setting.",
+      "source_ids": [
+        "aiperf-parsing-v013",
+        "aiperf-parsing-pinned",
+        "aiperf-issue-1562"
+      ],
+      "existing_issue": "https://github.com/ai-dynamo/aiperf/issues/1562",
+      "existing_issue_state": "open",
+      "local_run_id": "20261110T040845Z_nemotron-3-nano-4b_ollama_laptop_aiperf",
+      "local_run_valid_as_thinking_off": false,
+      "draft": "upstream/aiperf-reasoning-setting.md",
+      "qualification": "The public issue predates this project. Current main was inspected, not installed or benchmarked."
+    },
+    {
+      "id": "ollama-output-cap-compatibility",
+      "status": "present_in_tested_version_and_inspected_main_source",
+      "tested_version": "0.40.15",
+      "inspected_main_commit": "3f3fa58f7fcf18de43ec126ad8676b4281b6923c",
+      "summary": "The inspected chat request type accepts max_tokens and maps it to num_predict; max_completion_tokens is absent. The project cap test verifies the difference on the pinned local server.",
+      "source_ids": [
+        "ollama-openai-v04015",
+        "ollama-openai-pinned",
+        "ollama-openai-docs",
+        "ollama-issue-7125"
+      ],
+      "existing_issue": "https://github.com/ollama/ollama/issues/7125",
+      "existing_issue_state": "open",
+      "local_run_id": "20261110T015629Z_nemotron-3-nano-4b_ollama_laptop_captest",
+      "draft": "upstream/ollama-output-caps.md",
+      "qualification": "Small mechanism test. No universal model or current-main runtime claim."
+    },
+    {
+      "id": "ollama-reasoning-setting",
+      "status": "source_verified",
+      "summary": "Both inspected versions map top-level reasoning_effort none to disabled thinking. The nested reasoning object is also represented in source; it was not the workaround used in recorded AIPerf runs.",
+      "source_ids": [
+        "ollama-openai-v04015",
+        "ollama-openai-pinned",
+        "ollama-openai-docs"
+      ],
+      "qualification": "The project workaround was the loopback proxy. Nested extra-inputs remains a proposed alternative, not a benchmarked result."
+    },
+    {
+      "id": "ollama-context-defaults",
+      "status": "current_documentation_verified",
+      "summary": "Current context documentation uses memory-dependent defaults. The small-memory class documents 4k; this does not prove the running server effective setting.",
+      "source_ids": [
+        "ollama-context-docs"
+      ],
+      "qualification": "Use local runtime evidence for the context in a particular measurement."
+    },
+    {
+      "id": "dory-model-card-vllm",
+      "status": "stale_pending_pr_wording_verified",
+      "summary": "The live BF16 card still describes base vLLM support as under review, while PR 60149 is merged, the v0.33.0 registry includes Dory, and versioned package artifacts are published.",
+      "source_ids": [
+        "dory-card-live",
+        "vllm-pr-60149",
+        "vllm-registry-v033",
+        "vllm-tag-v033",
+        "vllm-pypi-v033",
+        "vllm-release-v033",
+        "dory-discussions-live",
+        "dory-discussion-15"
+      ],
+      "merge_date_utc": "2026-10-25T11:13:23Z",
+      "merge_commit": "75fc05a53a366068f534a61ab3ee6b50485419f2",
+      "package_version": "0.33.0",
+      "package_artifact_uploads_utc": [
+        "2026-11-02T10:12:56.222396Z",
+        "2026-11-02T10:13:18.631211Z",
+        "2026-11-02T10:13:42.650733Z"
+      ],
+      "formal_github_release_api_status": 404,
+      "draft": "upstream/dory-vllm-model-card.md",
+      "qualification": "No Dory inference or GPU smoke test performed. Tag and package evidence are distinguished from absent formal GitHub release notes."
+    }
+  ],
+  "bounded_duplicate_review": [
+    {
+      "query": "repo:ai-dynamo/aiperf \"reasoning_effort\" \"none\"",
+      "result": "Exact existing issue 1562; draft an addendum, not a new issue."
+    },
+    {
+      "query": "repo:ai-dynamo/aiperf \"coerce_value\"",
+      "result": "Exact existing issue 1562."
+    },
+    {
+      "query": "repo:ollama/ollama \"max_completion_tokens\" in:title",
+      "result": "Existing issue 7125; draft an addendum, not a new issue."
+    },
+    {
+      "query": "Dory BF16 Community listing and current open PR 15",
+      "result": "No exact duplicate identified in this bounded listing/PR review; not exhaustive across all model variants."
+    }
+  ],
+  "remaining_m12_items": [
+    {
+      "item": "AIPerf startup/dataset timeout",
+      "status": "local observation retained; minimal upstream reproduction and root-cause qualification pending"
+    },
+    {
+      "item": "AIPerf output-length/EOS warning",
+      "status": "local observation retained; warning semantics need isolated reproduction"
+    },
+    {
+      "item": "AIPerf effective-decode-throughput maximum",
+      "status": "metric interpretation and timestamp validation pending"
+    }
+  ]
+}
